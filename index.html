@@ -1,110 +1,170 @@
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MuscleSense 肌肉檢測裝置</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <style>
     body {
       font-family: "Helvetica Neue", sans-serif;
       margin: 0;
-      background: #f9fbfc;
+      padding: 0;
+      background-color: #f4f4f4;
       color: #333;
     }
     header {
+      background: url('https://cdn.pixabay.com/photo/2017/02/20/11/57/training-2080536_1280.jpg') center/cover no-repeat;
+      color: white;
+      padding: 5rem 2rem;
       text-align: center;
-      padding: 2rem 1rem;
-      background: #d8f3f9;
+      animation: fadeIn 2s ease-out;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    nav {
+      background: #374151;
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      padding: 1rem;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background-color: #4b5563;
     }
     section {
-      max-width: 900px;
+      padding: 2rem;
+      max-width: 1000px;
       margin: auto;
-      padding: 2rem 1rem;
+      background: white;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      animation: slideUp 1s ease-out;
     }
-    h1, h2 {
-      color: #0077b6;
+    .feature {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
-    canvas {
-      background: #fff;
-      border-radius: 10px;
+    .feature div {
+      flex: 1 1 30%;
+      background: #e5e7eb;
       padding: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      border-radius: 6px;
+      transition: transform 0.3s;
     }
-    button {
+    .feature div:hover {
+      transform: translateY(-5px);
+      background: #d1d5db;
+    }
+    form input, form textarea {
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    form button {
       padding: 0.5rem 1rem;
-      margin: 0.5rem;
-      background: #00b4d8;
+      background: #2563eb;
       color: white;
       border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      border-radius: 4px;
     }
     footer {
       text-align: center;
+      background: #1f2937;
+      color: white;
       padding: 1rem;
-      font-size: 0.8rem;
-      color: #666;
+      font-size: 0.9rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <header data-aos="fade-down">
-    <h1 id="title">MuscleSense 肌肉檢測裝置</h1>
-    <p id="desc">即時肌肉訊號偵測與回饋</p>
-    <button onclick="loadLang('zh')">中文</button>
-    <button onclick="loadLang('en')">English</button>
-  </header>
 
-  <section data-aos="fade-up">
-    <h2>模擬 EMG 數據圖表</h2>
-    <canvas id="emgChart" height="200"></canvas>
-  </section>
+<header>
+  <h1>MuscleSense 肌肉檢測裝置</h1>
+  <p>肌肉監測的新革命：精準、即時、安全</p>
+</header>
 
-  <footer>
-    本網站由 MuscleSense 團隊製作，資料僅供模擬用途。
-  </footer>
+<nav>
+  <a href="#home">首頁</a>
+  <a href="#technology">技術原理</a>
+  <a href="#features">產品特色</a>
+  <a href="#contact">聯絡我們</a>
+</nav>
 
-  <script>
-    AOS.init();
+<section id="home">
+  <h2>關於 MuscleSense</h2>
+  <p>MuscleSense 是一款結合 EMG 技術的智慧肌肉檢測裝置，適用於運動訓練、復健與健康監測。透過即時肌電數據，使用者可以精準掌握肌肉狀態，提升訓練成效與安全性。</p>
+</section>
 
-    async function loadLang(lang) {
-      const res = await fetch('lang/' + lang + '.json');
-      const text = await res.json();
-      document.getElementById('title').innerText = text.title;
-      document.getElementById('desc').innerText = text.description;
-    }
+<section id="technology">
+  <h2>技術原理</h2>
+  <p><strong>什麼是 EMG？</strong><br>
+    肌電圖（EMG）是一種記錄肌肉電活動的技術，透過貼附式感測器來分析肌肉收縮情況。</p>
+  <p><strong>MuscleSense 偵測流程：</strong></p>
+  <ol>
+    <li>貼上感測貼片</li>
+    <li>讀取肌肉收縮電訊號</li>
+    <li>即時傳輸資料至行動裝置</li>
+    <li>進行分析與視覺化回饋</li>
+  </ol>
+</section>
 
-    async function loadChart() {
-      const res = await fetch('demoData.json');
-      const data = await res.json();
-      const labels = data.timestamps;
-      const datasets = Object.keys(data.channels).map((key, index) => ({
-        label: key,
-        data: data.channels[key],
-        fill: false,
-        borderColor: ['#0077b6', '#90e0ef', '#00b4d8'][index % 3],
-        tension: 0.3
-      }));
+<section id="features">
+  <h2>產品特色</h2>
+  <div class="feature">
+    <div>
+      <h3>✅ 即時數據回饋</h3>
+      <p>使用者能即時查看肌肉收縮強度與頻率。</p>
+    </div>
+    <div>
+      <h3>✅ 輕巧易攜</h3>
+      <p>裝置輕量、無負擔，適合長時間攜帶。</p>
+    </div>
+    <div>
+      <h3>✅ APP 整合</h3>
+      <p>可同步至手機 APP，隨時追蹤肌肉活動。</p>
+    </div>
+  </div>
+</section>
 
-      new Chart(document.getElementById('emgChart'), {
-        type: 'line',
-        data: { labels, datasets },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { position: 'top' },
-            title: { display: true, text: '模擬肌電圖數據' }
-          }
-        }
-      });
-    }
+<section id="contact">
+  <h2>聯絡我們</h2>
+  <p>本專案由輔仁大學資工系三乙林立開發</p>
+  <form onsubmit="event.preventDefault(); alert('感謝您的留言，我們將盡快回覆！');">
+    <label>姓名</label>
+    <input type="text" name="name" placeholder="請輸入您的姓名">
+    <label>Email</label>
+    <input type="email" name="email" placeholder="請輸入您的電子信箱">
+    <label>留言內容</label>
+    <textarea name="message" rows="4" placeholder="請留下您的訊息"></textarea>
+    <button type="submit">送出</button>
+  </form>
+</section>
 
-    window.onload = () => {
-      loadLang('zh');
-      loadChart();
-    };
-  </script>
+<footer>
+  &copy; 2025 MuscleSense 團隊｜由輔仁大學資工系三乙林立開發｜<a href="https://github.com/B1204268/MuscleSense" style="color:#93c5fd;">GitHub Repo</a>
+</footer>
+
 </body>
 </html>
